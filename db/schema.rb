@@ -21,16 +21,16 @@ ActiveRecord::Schema.define(version: 20161202091027) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string   "ISBN",       null: false
-    t.string   "title",      null: false
-    t.string   "authors",    null: false
-    t.integer  "copies",     null: false
-    t.string   "subject",    null: false
-    t.integer  "year",       null: false
-    t.integer  "price",      null: false
-    t.string   "publisher",  null: false
-    t.string   "keywords",   null: false
-    t.string   "format",     null: false
+    t.integer  "ISBN"
+    t.string   "title"
+    t.string   "authors"
+    t.integer  "copies"
+    t.string   "subject"
+    t.integer  "year"
+    t.integer  "price"
+    t.string   "publisher"
+    t.string   "keywords"
+    t.string   "format"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
