@@ -2,7 +2,15 @@ class CustomersController < ApplicationController
    def new
    end
 
+   def show
+   end
+
+   def edit
+   end
+
    def create
-     render plain: params[:customer].inspect
+   end
+
+   def update
    end
 end
