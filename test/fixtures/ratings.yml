@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usefulness: MyString
+  book_id: 1
+  customer_id: 1
+  rater_id: 1
+
+two:
+  usefulness: MyString
+  book_id: 1
+  customer_id: 1
+  rater_id: 1
