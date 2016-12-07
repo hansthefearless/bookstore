@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20161207110850) do
     t.string   "authors",    null: false
     t.integer  "copies",     null: false
     t.string   "subject",    null: false
+    t.string   "thumbnail",  null: false
     t.integer  "year",       null: false
     t.integer  "price",      null: false
     t.string   "publisher",  null: false
