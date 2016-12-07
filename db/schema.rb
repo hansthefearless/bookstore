@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202091027) do
+ActiveRecord::Schema.define(version: 20161207110850) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "login"
@@ -70,10 +70,12 @@ ActiveRecord::Schema.define(version: 20161202091027) do
     t.string   "usefulness"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "book_id"
     t.integer  "customer_id"
+    t.integer  "book_id"
+    t.integer  "rater_id"
     t.index ["book_id"], name: "index_ratings_on_book_id"
     t.index ["customer_id"], name: "index_ratings_on_customer_id"
+    t.index ["rater_id"], name: "index_ratings_on_rater_id"
   end
 
 end

@@ -1,5 +1,5 @@
 class AddCustomerRefToRatings < ActiveRecord::Migration[5.0]
   def change
-    add_reference :ratings, :customer, foreign_key: true
+    add_foreign_key :ratings, :customer, name: :customer_id
   end
 end
