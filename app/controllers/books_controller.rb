@@ -54,7 +54,7 @@ class BooksController < ApplicationController
           return Book.where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%").order(:year)
         end
         if params[:sort] == 'rating'
-          return Book.where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%")
+          return Book.left_outer_joins(opinions: :ratings).where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%").select("books.*, avg(ratings.usefulness) as avg_rating").group("books.id").order("avg_rating DESC")
         end
       end
 
