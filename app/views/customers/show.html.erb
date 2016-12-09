@@ -1,0 +1,18 @@
+<% provide(:title, "Profile") %>
+<div class="page-header">
+  <h1>Your Profile</h1>
+  <div class="row">
+    <h2>Order History</h2>
+    <ul class="list">
+      <%= render @orders %>
+    </ul>
+    <h2>Opinion History</h2>
+    <ul class="list">
+      <%= render @opinions %>
+    </ul>
+    <h2>Rating History</h2>
+    <ul class="list">
+      <%= render @ratings %>
+    </ul>
+  </div>
+</div>
