@@ -11,6 +11,7 @@ class CreateBooks < ActiveRecord::Migration[5.0]
       t.string :publisher, null:false
       t.string :keywords, null:false
       t.string :format, null:false
+      t.string :thumbnail
 
       t.timestamps
     end

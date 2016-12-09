@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20161209050812) do
     t.string   "publisher",  null: false
     t.string   "keywords",   null: false
     t.string   "format",     null: false
+    t.string   "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
