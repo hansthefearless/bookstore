@@ -5,7 +5,11 @@
   <li>Publisher: <%= book.publisher %></li>
   <li>Subject: <%= book.subject %></li>
   <li>Year: <%= book.year %></li>
-  <li>Average rating for feedback: <%= book['avg_rating'] %></li>
-  <li><%= link_to 'Link to Book', book_path(book) %></li>
-  <li><%= link_to 
+  <li>Average rating for feedback: <%= book.avg_rating %></li>
+  <li><%= link_to "More Information", book_path(book) %></li>
+  <li>
+    <%= form_tag({controller: "sessions", action: "add"}, method: "get") do %>
+      <%= submit_tag("Add to Cart", class: "btn btn-primary") %>
+    <% end %>
+  </li>
 </div>
