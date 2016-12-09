@@ -5,7 +5,7 @@
   <h1>Search our BookStore</h1>
 </div>
 <div class="row">
-  <% form_for(@books), url: "#", html: {method: "get"} do |f| %>
+  <% form_for(@books), url: {action: "find"}, html: {method: "get"} do |f| %>
     <%= render 'shared/error_messages', object: @books %>
 
     <%= f.label :title %>

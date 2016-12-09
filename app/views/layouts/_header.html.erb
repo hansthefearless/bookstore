@@ -6,7 +6,7 @@
         <% unless logged_in? %>
           <li><%= link_to "Log In", login_path %></li>
         <% else %>
-          <li><%= link_to "Book Search", books_path %></li>
+          <li><%= link_to "Book Search", search_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>

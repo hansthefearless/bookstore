@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
    def create
      @customer = Customer.new(customer_params)
      @customer.save
-     
+
      log_in @customer
 
      redirect_to customer_path(@customer)
