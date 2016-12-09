@@ -15,14 +15,14 @@ class CustomersController < ApplicationController
      @customer = Customer.new(customer_params)
 
      @customer.save
-     redirect_to @customer
+     redirect_to customer_path(@customer)
    end
 
    def update
      @customer = Customer.find(params[:id])
 
      @customer.update(customer_params)
-     redirect_to @customer
+     redirect_to customer_path(@customer)
    end
 
    private
