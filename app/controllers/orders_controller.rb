@@ -19,6 +19,11 @@ class OrdersController < ApplicationController
      @order = Order.new(order_params)
 
      @order.save
+
+     params['books'].each do |b|
+       @order_books = OrderBook.new(b)
+
+       @order_books.save
      redirect_to @order
    end
 
@@ -29,7 +34,13 @@ class OrdersController < ApplicationController
      redirect_to @order
    end
 
-   def order_params
-    params.require(:order).permit(:status, :customer_id)
-  end
+   private
+     def order_params
+       params.require(:order).permit(:status, :customer_id)
+     end
+
+   private
+     def order_book_params
+       params.require(:order_book).permit(:book_id, :order_id, :copies)
+     end
 end

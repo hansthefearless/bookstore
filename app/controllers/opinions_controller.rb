@@ -6,7 +6,8 @@ class OpinionsController < ApplicationController
      redirect_to book_path(@book)
    end
 
-   def opinion_params
-    params.require(:opinion).permit(:customer_id, :book_id, :score, :text)
-  end
+   private
+     def opinion_params
+      params.require(:opinion).permit(:customer_id, :book_id, :score, :text)
+     end
 end
