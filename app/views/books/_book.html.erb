@@ -1,8 +1,10 @@
-<li>
+<div class="row each-book">
+  <img src= alt="thumbnail" />
   <li>Title: <%= book.title %></li>
   <li>Authors: <%= book.authors %></li>
   <li>Publisher: <%= book.publisher %></li>
   <li>Subject: <%= book.subject %></li>
-  <li>Avg Rating: <%= book.avg_rating %></li>
+  <li>Year: <%= book.year %></li>
+  <li>Average rating for feedback: <%= book.avg_rating %></li>
   <li><%= link_to 'Show', book_path(book) %></li>
-</li>
+</div>
