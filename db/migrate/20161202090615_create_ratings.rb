@@ -3,7 +3,7 @@ class CreateRatings < ActiveRecord::Migration[5.0]
     create_table :ratings do |t|
       t.belongs_to :customer, index: true
       t.belongs_to :opinion, index: true
-      t.string :usefulness
+      t.integer :usefulness
 
       t.timestamps
     end

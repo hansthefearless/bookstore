@@ -79,12 +79,10 @@ ActiveRecord::Schema.define(version: 20161209050812) do
   create_table "ratings", force: :cascade do |t|
     t.integer  "customer_id"
     t.integer  "opinion_id"
-    t.string   "usefulness"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "customer_rated_id"
+    t.integer  "usefulness"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["customer_id"], name: "index_ratings_on_customer_id"
-    t.index ["customer_rated_id"], name: "index_ratings_on_customer_rated_id"
     t.index ["opinion_id"], name: "index_ratings_on_opinion_id"
   end
 

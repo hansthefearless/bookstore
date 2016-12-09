@@ -28,4 +28,10 @@ class BooksController < ApplicationController
      @book.update(book_params)
      redirect_to @book
    end
+
+   private
+     def book_params
+       params.require(:book).permit(:ISBN, :title, :authors, :copies, :subject, :year, :price, :publisher, :keywords, :format, :thumbnail)
+     end
+
 end

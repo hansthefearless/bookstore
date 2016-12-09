@@ -24,4 +24,9 @@ class CustomersController < ApplicationController
      @customer.update(customer_params)
      redirect_to @customer
    end
+
+   private
+     def customer_params
+       params.require(:customer).permit(:login, :password, :name, :phone, :address, :CCN)
+     end
 end

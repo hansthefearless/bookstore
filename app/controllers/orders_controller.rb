@@ -28,4 +28,8 @@ class OrdersController < ApplicationController
      @order.update(order_params)
      redirect_to @order
    end
+
+   def order_params
+    params.require(:order).permit(:status, :customer_id)
+  end
 end
