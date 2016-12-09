@@ -8,25 +8,37 @@
 
 require 'json'
 
-Book.destroy_all
-Customer.destroy_all
-Order.destroy_all
-Opinion.destroy_all
-Rating.destroy_all
+
+# Admin
+
 Admin.destroy_all
+Admin.create("login": "admin", "password": "admin", "name": "Admin")
+print "\rSeeded 1 admin\n"
 
-file = File.read("db/data.txt")
-data_hash = JSON.parse(file)
 
+# Customers
+
+Customer.destroy_all
 Customer.create("login": "hans", "password": "hans", "name": "Sng Han Jie", "phone": "81234567", "address": "8 Somapah Road", "CCN": "2222111133334444")
 Customer.create("login": "jang", "password": "jang", "name": "Joel Ang", "phone": "82345678", "address": "8 Somapah Road", "CCN": "2222111133334444")
 Customer.create("login": "candy", "password": "candy", "name": "Lou Yu Xin", "phone": "83456789", "address": "8 Somapah Road", "CCN": "2222111133334444")
 Customer.create("login": "chay", "password": "chay", "name": "Chay Choong", "phone": "84567890", "address": "8 Somapah Road", "CCN": "2222111133334444")
-
 customers = ["hans", "jang", "candy", "chay"]
+print "\rSeeded 4 customers\n"
+
+# Books, Opinions and Ratings
+
+Book.destroy_all
+Opinion.destroy_all
+Rating.destroy_all
+
+file = File.read("db/data.txt")
+data_hash = JSON.parse(file)
 
 counter = 0
 opinioncounter = 0
+ratingcounter = 0
+
 data_hash.each do |k, v|
 	isbn = v['ISBN'].to_s
 	title = v['title']
@@ -44,6 +56,7 @@ data_hash.each do |k, v|
 	begin
 		randomCust = rand(0..3)
 		custList = ["hans", "jang", "candy", "chay"].shuffle
+
 		for i in 0..rand(0..3)
 			Opinion.create("customer": Customer.find_by("login": custList[i]), "book": Book.find(counter+1), "score": rand(0..10), "text": "this book is gr8 i r8 8/8")
 			opinioncounter += 1
@@ -51,24 +64,30 @@ data_hash.each do |k, v|
 			for j in 0..rand(0..3)
 				if j != i
 					Rating.create("customer": Customer.find_by("login": custList[j]), "opinion": Opinion.find(opinioncounter), "usefulness": rand(0..2))
+					ratingcounter += 1
 				end
 			end
 		end
+
 	rescue
 		counter -= 1
 	end
 
 	counter += 1
-	print "\rSeeding #{counter} books: #{isbn}"
+	print "\rSeeded #{counter} books, #{opinioncounter} opinions and #{ratingcounter} ratings"
 end
 
-Admin.create("login": "admin1", "password": "admin1", "name": "Admin 1")
-Admin.create("login": "admin2", "password": "admin2", "name": "Admin 2")
+print "\n"
+
+# Orders
+
+Order.destroy_all
 
 for i in 1..20
 	Order.create("customer": Customer.find_by("login": customers[rand(0..3)]), "status": "Pending")
 	for j in 1..5
-		OrderBook.create("order": Order.find(i), "book": Book.find(rand(1..615)))
+		OrderBook.create("order": Order.find(i), "book": Book.find(rand(1..615)), "copies": rand(1..5))
+		print "\rSeeded #{i} orders"
 	end
 end
 
