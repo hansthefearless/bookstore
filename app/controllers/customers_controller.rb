@@ -13,18 +13,23 @@ class CustomersController < ApplicationController
 
    def create
      @customer = Customer.new(customer_params)
-     @customer.save
+     if @customer.save
+       log_in @customer
+       redirect_to customer_path(@customer)
+     else
+       render 'new'
+     end
 
-     log_in @customer
-
-     redirect_to customer_path(@customer)
    end
 
    def update
      @customer = Customer.find(params[:id])
 
-     @customer.update(customer_params)
-     redirect_to customer_path(@customer)
+     if @customer.update(customer_params)
+       redirect_to customer_path(@customer)
+     else
+       render 'edit'
+     end
    end
 
    private
