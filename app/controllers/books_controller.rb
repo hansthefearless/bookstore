@@ -42,39 +42,20 @@ class BooksController < ApplicationController
       end
 
       def find_books
-        Book.find(:all, :conditions => conditions)
-      end
+        title = params[:title]
+        authors = params[:authors]
+        publisher = params[:publisher]
+        subject = params[:subject]
 
-      def title_conditions
-        ["books.title LIKE ?", "%#{title}%"] unless title.blank?
-      end
-
-      def authors_conditions
-        ["books.authors LIKE ?", "%#{authors}%"] unless authors.blank?
-      end
-
-      def publisher_conditions
-        ["books.publisher LIKE ?", "%#{publisher}%"] unless publisher.blank?
-      end
-
-      def subject_conditions
-        ["books.subject = ?", subject] unless subject.blank?
-      end
-
-      def conditions
-        [conditions_clauses.join(' AND '), *conditions_options]
-      end
-
-      def conditions_clauses
-        conditions_parts.map { |condition| condition.first }
-      end
-
-      def conditions_options
-        conditions_parts.map { |condition| condition[1..-1] }.flatten
-      end
-
-      def conditions_parts
-        private_methods(false).grep(/_conditions$/).map { |m| send(m) }.compact
+        if params[:sort] == 'none'
+          return Book.where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%")
+        end
+        if params[:sort] == 'year'
+          return Book.where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%").order(:year)
+        end
+        if params[:sort] == 'rating'
+          return Book.where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%")
+        end
       end
 
 end
