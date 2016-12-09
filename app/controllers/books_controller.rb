@@ -54,10 +54,10 @@ class BooksController < ApplicationController
         subject = params[:subject]
 
         if params[:sort] == 'none'
-          return Book.where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%")
+          return Book.left_outer_joins(opinions: :ratings).select("books.*, avg(ratings.usefulness) as avg_rating").where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%").group("books.id")
         end
         if params[:sort] == 'year'
-          return Book.where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%").order(:year)
+          return Book.left_outer_joins(opinions: :ratings).select("books.*, avg(ratings.usefulness) as avg_rating").where("books.title LIKE ? AND books.authors LIKE ? AND books.publisher LIKE ? AND books.subject LIKE ?", "%#{title}%", "%#{authors}%", "%#{publisher}%", "%#{subject}%").group("books.id").order(:year)
         end
         if params[:sort] == 'rating'
           return Book.left_outer_joins(opinions: :ratings).select("books.*, ratings.usefulness, avg(ratings.usefulness) as avg_rating").where(
