@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/search', to: 'books#search'
+  get '/find', to: 'books#find'
   root 'welcome#index'
 end

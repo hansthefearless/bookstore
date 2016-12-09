@@ -30,7 +30,10 @@ class BooksController < ApplicationController
    end
 
    def search
-     @books ||= find_books
+   end
+
+   def find
+      @books ||= find_books
    end
 
    private
@@ -55,7 +58,7 @@ class BooksController < ApplicationController
       end
 
       def subject_conditions
-        ["products.subject = ?", subject] unless subject.blank?
+        ["books.subject = ?", subject] unless subject.blank?
       end
 
       def conditions
