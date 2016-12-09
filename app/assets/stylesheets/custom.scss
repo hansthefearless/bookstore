@@ -121,9 +121,9 @@ label {
 }
 
 
-/* Users index */
+/* list of books */
 
-.list {
+.list-book {
   list-style: none;
   margin: 0;
   .each-book {
@@ -134,7 +134,12 @@ label {
       display: block;
     }
   }
+}
 
+.thumbnails {
+  border-style: solid;
+  margin-bottom: 15px;
+  margin-right: 20px;
 }
 
 
