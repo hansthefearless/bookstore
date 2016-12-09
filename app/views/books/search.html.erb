@@ -1,42 +1,8 @@
 <% provide(:title, "Search") %>
-<% provide(:button_text), "Search!" %>
-
+<% provide(:button_text, "Search") %>
 <div class="page-header">
-  <h1>Search our BookStore</h1>
+  <h1>Search the BookStore</h1>
 </div>
 <div class="row">
-  <% form_for(@books), url: {action: "find"}, html: {method: "get"} do |f| %>
-    <%= render 'shared/error_messages', object: @books %>
-
-    <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control' %>
-
-    <%= f.label :authors %>
-    <%= f.text_field :authors, class: 'form-control' %>
-
-    <%= f.label :publisher %>
-    <%= f.text_field :publisher, class: 'form-control' %>
-
-    <%= f.label :subject %>
-    <%= f.text_field :subject, class: 'form-control' %>
-
-    <%= f.label :sort, "Unsorted" %>
-    <%= f.radio_button :sort, "none" %>
-    <%= f.label :sort, "Sort by: Year" %>
-    <%= f.radio_button :sort, "year" %>
-    <%= f.label :sort, "Sort by: Average Ratings of Feedback" %>
-    <%= f.radio_button :sort, "rating" %>
-
-    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <%= render 'form' %>
 </div>
-
-
-<!--
-<div class="col-lg-6">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search for...">
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="button">Go!</button>
-    </span>
-  </div>
-</div> -->
