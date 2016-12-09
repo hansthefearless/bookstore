@@ -20,8 +20,8 @@ class OrdersController < ApplicationController
 
      @order.save
 
-     params['books'].each do |b|
-       @order_books = OrderBook.new(b)
+     params['books'].each do |order_book_params|
+       @order_books = OrderBook.new(order_book_params)
 
        @order_books.save
      redirect_to @order
