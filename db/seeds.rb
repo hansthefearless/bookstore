@@ -11,6 +11,9 @@ require 'json'
 Book.destroy_all
 Customer.destroy_all
 Order.destroy_all
+Opinion.destroy_all
+Rating.destroy_all
+Admin.destroy_all
 
 file = File.read("db/data.txt")
 data_hash = JSON.parse(file)
@@ -45,7 +48,7 @@ data_hash.each do |k, v|
 	rescue
 		counter -= 1
 	end
-		
+
 	counter += 1
 	print "\rSeeding #{counter} books: #{isbn}"
 end
@@ -59,9 +62,6 @@ for i in 1..20
 		OrderBook.create("order": Order.find(i), "book": Book.find(rand(1..615)))
 	end
 end
-
-# Opinion.create("customer": "hans", "book": "", "score": "", "text": "")
-
 
 puts "\nSeeding complete"
 
