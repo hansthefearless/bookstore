@@ -72,16 +72,40 @@ p {
 }
 
 /* forms */
+.labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sort-label{
+  display: block;
+}
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  width: 20%;
   margin-bottom: 15px;
+  margin-right: 10px;
   @include box_sizing;
 }
 
 input {
   height: auto !important;
+  &[type="submit"] {
+    width : 10%;
+  }
+}
+#sort {
+  width : 20%;
+}
+
+input[type=submit]{
+  width: 10%;
+  display: block;
+}
+
+label {
+  margin-right: 10px;
 }
 
 #error_explanation {
@@ -98,7 +122,6 @@ input {
     color: $state-danger-text;
   }
 }
-
 
 
 /* Users index */
