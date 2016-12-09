@@ -26,6 +26,7 @@ Customer.create("login": "chay", "password": "chay", "name": "Chay Choong", "pho
 customers = ["hans", "jang", "candy", "chay"]
 
 counter = 0
+opinioncounter = 0
 data_hash.each do |k, v|
 	isbn = v['ISBN'].to_s
 	title = v['title']
@@ -42,9 +43,17 @@ data_hash.each do |k, v|
 	
 	begin
 		randomCust = rand(0..3)
-		Opinion.create("customer": Customer.find_by("login": customers[randomCust]), "book": Book.find(counter+1), "score": rand(0..10), "text": "this book is gr8 i r8 8/8")
-		Rating.create("customer": Customer.find_by("login": customers[randomCust]), "opinion": Opinion.find(counter+1), "usefulness": rand(0..2))
+		custList = ["hans", "jang", "candy", "chay"].shuffle
+		for i in 0..rand(0..3)
+			Opinion.create("customer": Customer.find_by("login": custList[i]), "book": Book.find(counter+1), "score": rand(0..10), "text": "this book is gr8 i r8 8/8")
+			opinioncounter += 1
 
+			for j in 0..rand(0..3)
+				if j != i
+					Rating.create("customer": Customer.find_by("login": custList[j]), "opinion": Opinion.find(opinioncounter), "usefulness": rand(0..2))
+				end
+			end
+		end
 	rescue
 		counter -= 1
 	end
