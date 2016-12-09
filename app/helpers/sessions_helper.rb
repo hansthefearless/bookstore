@@ -1,6 +1,5 @@
 module SessionsHelper
 
-
     #Logs in the given user.
     def log_in(customer)
       session[:customer_id] = customer.id
@@ -34,6 +33,5 @@ module SessionsHelper
     # def store_location
     #   session[:forwarding_url] = request.original_url if request.get?
     # end
-
 
 end

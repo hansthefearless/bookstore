@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202091027) do
+
+ActiveRecord::Schema.define(version: 20161209050812) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "login"
@@ -21,18 +22,70 @@ ActiveRecord::Schema.define(version: 20161202091027) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.integer  "ISBN"
-    t.string   "title"
-    t.string   "authors"
-    t.integer  "copies"
-    t.string   "subject"
-    t.integer  "year"
-    t.integer  "price"
-    t.string   "publisher"
-    t.string   "keywords"
-    t.string   "format"
+    t.string   "ISBN",       null: false
+    t.string   "title",      null: false
+    t.string   "authors",    null: false
+    t.integer  "copies",     null: false
+    t.string   "subject",    null: false
+    t.integer  "year",       null: false
+    t.integer  "price",      null: false
+    t.string   "publisher",  null: false
+    t.string   "keywords",   null: false
+    t.string   "format",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "login",      null: false
+    t.string   "password",   null: false
+    t.string   "name",       null: false
+    t.integer  "phone",      null: false
+    t.string   "address",    null: false
+    t.string   "CCN",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "opinions", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.integer  "book_id"
+    t.integer  "score"
+    t.text     "text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["book_id"], name: "index_opinions_on_book_id"
+    t.index ["customer_id"], name: "index_opinions_on_customer_id"
+  end
+
+  create_table "order_books", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "book_id"
+    t.integer  "copies"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_order_books_on_book_id"
+    t.index ["order_id"], name: "index_order_books_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.string   "status",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.integer  "opinion_id"
+    t.string   "usefulness"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "customer_rated_id"
+    t.index ["customer_id"], name: "index_ratings_on_customer_id"
+    t.index ["customer_rated_id"], name: "index_ratings_on_customer_rated_id"
+    t.index ["opinion_id"], name: "index_ratings_on_opinion_id"
   end
 
   create_table "customers", force: :cascade do |t|

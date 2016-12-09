@@ -23,12 +23,12 @@ data_hash.each do |k, v|
 	year = v['year']
 	price = rand(2000...10000) / 100.0
 	publisher = v['publisher']
+	thumbnail = v['thumbnail']
 	keywords = v['keywords']
 	form = rand(1..2) == 1 ? "Hardcover" : "Softcover"
-	Book.create("ISBN" => isbn, "title" => title, "authors" => authors, "copies" => copies, "subject" => subject, "year" => year, "price" => price, "publisher" => publisher, "keywords" => keywords, "format" => form)
+	Book.create("ISBN" => isbn, "title" => title, "authors" => authors, "thumbnail" => thumbnail, "copies" => copies, "subject" => subject, "year" => year, "price" => price, "publisher" => publisher, "keywords" => keywords, "format" => form)
 	counter += 1
 	print "\rSeeding #{counter} entries: #{isbn}"
 end
 
 puts "\nSeeding complete"
-
