@@ -91,15 +91,12 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
-  &[type="submit"] {
-    width : 10%;
-  }
 }
 #sort {
   width : 20%;
 }
 
-input[type=submit]{
+.search-button{
   width: 10%;
   display: block;
 }
@@ -133,5 +130,15 @@ label {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
+    li {
+      display: block;
+    }
   }
+
+}
+
+
+/* search div */
+.search-div {
+  margin-bottom: 15px;
 }

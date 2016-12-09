@@ -16,6 +16,6 @@
   <%= label_tag(:sort, "Sort by", class: 'sort-label') %>
   <%= select_tag(:sort, options_for_select([["None","none"], ["Year", "year"], ["Average Ratings of Feedback", "rating"]],2)) %>
 
-  <%= submit_tag(yield(:button_text), class: "btn btn-primary") %>
+  <%= submit_tag(yield(:button_text), class: "btn btn-primary search-button") %>
 
 <% end %>

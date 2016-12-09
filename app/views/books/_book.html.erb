@@ -1,3 +1,7 @@
 <li>
-  <%= book %>
+  <li>Title: <%= book.title %></li>
+  <li>Authors: <%= book.authors %></li>
+  <li>Publisher: <%= book.publisher %></li>
+  <li>Subject: <%= book.subject %></li>
+  <li><%= link_to 'Show', book_path(book) %></li>
 </li>
