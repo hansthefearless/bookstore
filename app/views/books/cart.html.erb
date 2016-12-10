@@ -1,0 +1,26 @@
+<% provide(:title, "Cart") %>
+<div class="page-header">
+  <h1>Your Cart</h1>
+</div>
+<div class="row">
+  <ul class="list-book">
+    <% if @cart!= nil %>
+      <% @cart.each do |book| %>
+        <div class="row each-book">
+          <img class="thumbnails" src="<%= book[0].thumbnail%>" alt="thumbnail" align="left" />
+          <li>Title: <%= book[0].title %></li>
+          <li>Authors: <%= book[0].authors %></li>
+          <li>Publisher: <%= book[0].publisher %></li>
+          <li>Subject: <%= book[0].subject %></li>
+          <li>Year: <%= book[0].year %></li>
+          <li>Average rating for feedback: <%#= book.avg_rating %></li>
+        </div>
+      <% end %>
+    <% else %>
+    <p style="text-align: center;">
+      Your cart is empty.
+    </p>
+    <% end %>
+  </ul>
+
+</div>

@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "BookStore", root_path, id: "logo" %>
+    <%= link_to "B&N", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% unless logged_in? %>
@@ -12,6 +12,7 @@
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+              <li><%= link_to "View Cart", cart_path %></li>
               <li><%= link_to "Profile", current_customer %></li>
               <li><%= link_to "Edit", edit_customer_path(current_customer) %></li>
               <li class="divider"></li>

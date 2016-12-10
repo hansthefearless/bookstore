@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/search', to: 'books#search'
   get '/find', to: 'books#find'
+  post '/add_to_cart', to: 'books#add_to_cart'
+  get '/cart', to: 'books#cart'
   root 'welcome#index'
 end

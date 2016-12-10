@@ -1,4 +1,16 @@
 class BooksController < ApplicationController
+   def add_to_cart
+     book_id = params[:book]
+     flash.now[:success] = "Book added to cart"
+     add book_id
+     render 'search'
+   end
+
+   def cart
+     @cart = populate_cart
+   end
+
+
    def index
      @books = Book.all
    end
@@ -65,5 +77,6 @@ class BooksController < ApplicationController
           "books.id").order("avg(ratings.usefulness) DESC")
         end
       end
+
 
 end

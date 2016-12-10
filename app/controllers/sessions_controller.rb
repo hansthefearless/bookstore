@@ -20,7 +20,4 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  def add
-  end
-
 end
