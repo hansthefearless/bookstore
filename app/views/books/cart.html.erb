@@ -13,7 +13,8 @@
           <li>Publisher: <%= book[0].publisher %></li>
           <li>Subject: <%= book[0].subject %></li>
           <li>Year: <%= book[0].year %></li>
-          <li>Average rating for feedback: <%#= book.avg_rating %></li>
+          <li>Average rating for feedback: <%= book[0].avg_rating %></li>
+          <li>Copies ordered: <%= book[1] %></li>
         </div>
       <% end %>
     <% else %>

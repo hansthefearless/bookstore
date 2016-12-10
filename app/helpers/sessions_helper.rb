@@ -58,10 +58,12 @@ module SessionsHelper
       cart = Array.new()
       if session[:cart] != nil
         session[:cart].each do |book|
-          @book = Book.find_by(id: book)
-          puts @book.title
-          cart.push([@book, session[:cart][book]])
+          @book = Book.left_outer_joins(opinions: :ratings).select(
+          "books.*, avg(ratings.usefulness) as avg_rating").where(
+          id: book[0])[0]
+          cart.push([@book, session[:cart][book[0]]])
         end
+        puts cart
         return cart
       end
     end

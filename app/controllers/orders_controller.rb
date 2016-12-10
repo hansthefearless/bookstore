@@ -22,8 +22,10 @@ class OrdersController < ApplicationController
 
      @order.save
 
-     params['books'].each do |order_book_params|
+     params['books'].each do |book|
        @order_books = OrderBook.new(order_book_params)
+       storebook = Book.find(book[:id])
+       storebook.update(copies: (storebook.copies-book[:copies]))
 
        @order_books.save
 
@@ -57,8 +59,8 @@ class OrdersController < ApplicationController
        params.require(:order).permit(:status, :customer_id)
      end
 
-   private
+
      def order_book_params
-       params.require(:order_book).permit(:book_id, :order_id, :copies)
+       book.require(:order_book).permit(:book_id, :order_id, :copies)
      end
 end
