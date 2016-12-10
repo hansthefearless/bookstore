@@ -1,9 +1,12 @@
 class BooksController < ApplicationController
    def add_to_cart
      book_id = params[:book]
-     flash.now[:success] = "Book added to cart"
-     add book_id
-     render 'search'
+     if add(book_id)
+       flash[:success] = "Book added to cart"
+     else
+       flash[:danger] = "Book has already been added to cart"
+     end
+     redirect_back_to
    end
 
    def cart
@@ -19,6 +22,18 @@ class BooksController < ApplicationController
    def add_to_qty
      book_id = params[:book]
      add_qty(book_id)
+     redirect_to cart_path
+   end
+
+   def back
+     redirect_back_to
+   end
+
+   def delete_from_cart
+     delete(params[:book])
+     puts "hello"
+     puts params[:book]
+     flash[:success] = "Book deleted from cart"
      redirect_to cart_path
    end
 
@@ -62,7 +77,8 @@ class BooksController < ApplicationController
    end
 
    def find
-      @books ||= find_books 
+     store_location
+     @books ||= find_books
    end
 
    private

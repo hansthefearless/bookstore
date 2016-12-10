@@ -2,18 +2,53 @@
 <div class="page-header">
   <h1>Book Information</h1>
 </div>
+<img class="image" src="<%= @book.thumbnail%>" alt="thumbnail"/>
+<table>
+  <tr>
+    <td>Title:</td>
+    <td><%= @book.title %></td>
+  </tr>
+  <tr>
+    <td>ISBN: </td>
+    <td><%= @book.ISBN %></td>
+  </tr>
+  <tr>
+    <td>Authors:</td>
+    <td><%= @book.authors %></td>
+  </tr>
+  <tr>
+    <td>Publisher:</td>
+    <td><%= @book.publisher %></td>
+  </tr>
+  <tr>
+    <td>Year: </td>
+    <td><%= @book.year %></td>
+  </tr>
+  <tr>
+    <td>Subject: </td>
+    <td><%= @book.subject %></td>
+  </tr>
+  <tr>
+    <td>Keywords:</td>
+    <td><%= @book.keywords %></td>
+  </tr>
+  <tr>
+    <td>Format:</td>
+    <td><%= @book.format %></td>
+  </tr>
+  <tr>
+    <td>Price: </td>
+    <td>$<%= @book.price %>.00</td>
+  </tr>
+  <tr>
+    <td>Quantity In Stock:</td>
+    <td><%= @book.copies %></td>
+  </tr>
+</table>
 <div class="row">
-  <ul class="list-book show-book">
-    <img class="thumbnails" src="<%= @book.thumbnail%>" alt="thumbnail" align="center"/>
-    <li>Title: <%= @book.title %> </li>
-    <li>ISBN: <%= @book.ISBN %> </li>
-    <li>Authors: <%= @book.authors %> </li>
-    <li>Publisher: <%= @book.publisher %> </li>
-    <li>Year: <%= @book.year %> </li>
-    <li>Subject: <%= @book.subject %> </li>
-    <li>Keywords: <%= @book.keywords %> </li>
-    <li>Format: <%= @book.format %> </li>
-    <li>Price: $<%= @book.price %>.00 </li>
-    <li>Quantity In Stock: <%= @book.copies %> </li>
-  </ul>
+  <%= form_tag(add_to_cart_path, :method => 'post', :remote => true) do %>
+    <%= hidden_field_tag(:book, @book.id) %>
+    <%= button_tag("Add to Cart") %>
+  <% end %>
+  <%= link_to "Back", back_path, :method => 'post' %>
 </div>

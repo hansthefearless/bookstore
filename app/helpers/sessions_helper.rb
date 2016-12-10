@@ -30,14 +30,15 @@ module SessionsHelper
     #   session.delete(:forwarding_url)
     # end
 
-    # def redirect_back_to
-    #   redirect_to(session[:forwarding_url])
-    # end
+    def redirect_back_to
+      redirect_to(session[:forwarding_url])
+      session.delete(:forwarding_url)
+    end
 
     #Stores the url trying to be accessed
-    # def store_location
-    #   session[:forwarding_url] = request.original_url if request.get?
-    # end
+    def store_location
+      session[:forwarding_url] = request.original_url if request.get?
+    end
 
     def add(book_id)
       if session[:cart] == nil
@@ -45,9 +46,15 @@ module SessionsHelper
       end
       if session[:cart][book_id] == nil
         session[:cart][book_id] = 1
+        return true
       else
         session[:cart][book_id] += 1
+        return false
       end
+    end
+
+    def delete(book_id)
+      session[:cart].delete(book_id)
     end
 
     def subtract_qty(book_id)

@@ -17,7 +17,7 @@
             <li>Average rating for feedback: <%= book[0].avg_rating %></li>
             <li>Price: $<%= book[0].price %>.00</li>
             <li>Quantity in stock: <%= book[0].copies %></li>
-            <li class="book-qty"> Quantity: <%= book[1] %></li>
+            <li class="book-qty"> Quantity to purchase: <%= book[1] %></li>
             <li>
               <div class="button-qty">
                 <%= form_tag(subtract_from_qty_path, :method => 'post', :remote => true) do %>
@@ -32,9 +32,18 @@
                 <% end %>
               </div>
             </li>
+            <li class="delete-link">
+              <%= link_to "Delete from cart", {:controller => "books", :action => "delete_from_cart", :book => book[0].id}, {:method => 'post', :data => { confirm: "Are you sure?"}} %>
+            </li>
+
           </div>
         </div>
       <% end %>
+  </div>
+    <%= form_tag(orders_path, :method => 'post') do %>
+      <%= hidden_field_tag(:cart, @cart) %>
+      <%= button_tag("Submit your Order", class:"btn btn-primary") %>
+    <% end %>
     <% else %>
     <p style="text-align: center;">
       Your cart is empty.

@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   get '/cart', to: 'books#cart'
   post 'subtract_from_qty', to: 'books#subtract_from_qty'
   post 'add_to_qty', to: 'books#add_to_qty'
+  post 'back', to: 'books#back'
+  post 'delete_from_cart', to: 'books#delete_from_cart'
   root 'welcome#index'
 end

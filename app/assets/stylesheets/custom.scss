@@ -144,8 +144,8 @@ label {
   border-style: solid;
   margin-bottom: 15px;
   margin-right: 20px;
-  height: 175px;
-  width: 125px;
+  height: 225px;
+  width: 150px;
 }
 
 
@@ -167,4 +167,23 @@ label {
   li{
     font-size: 20px;
   }
+}
+
+.info-label{
+  font-size: 10px;
+}
+
+table{
+  width: 40%;
+}
+td{
+  font-size: 20px;
+}
+.image {
+  margin-bottom: 20px;
+}
+
+.delete-link {
+  clear: both;
+  margin-left:15%;
 }
