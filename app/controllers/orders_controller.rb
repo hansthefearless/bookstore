@@ -31,13 +31,15 @@ class OrdersController < ApplicationController
      params['books'].each do |book|
        @books << book[:id]
 
-     @recommended = Order.joins("INNER JOIN order_books ON order_books.order_id = orders.id").joins(
+     @recommended = Order.joins(
+     "INNER JOIN order_books ON order_books.order_id = orders.id").joins(
      "INNER JOIN books ON books.id = order_books.book_id").where(
-     id: Order.joins("INNER JOIN order_books ON order_books.order_id = orders.id").joins(
+     customer_id: Customer.joins("INNER JOIN orders ON orders.customer_id = customers.id").joins(
+     "INNER JOIN order_books ON order_books.order_id = orders.id").joins(
      "INNER JOIN books ON books.id = order_books.book_id").where(
      "customer_id != ?", order_params[:customer_id]).where(
-     "books.id IN ?", @books).select("order_id").distinct).select("books.*").where.not(
-     "books.id IN ?", @books)
+     "books.id IN (?)", @books).select("customer_id").distinct).select("books.*").where.not(
+     "books.id IN (?)", @books)
 
      redirect_to order_path(@order)
    end
