@@ -38,8 +38,9 @@ class OrdersController < ApplicationController
      "INNER JOIN order_books ON order_books.order_id = orders.id").joins(
      "INNER JOIN books ON books.id = order_books.book_id").where(
      "customer_id != ?", order_params[:customer_id]).where(
-     "books.id IN (?)", @books).select("customer_id").distinct).select("books.*").where.not(
-     "books.id IN (?)", @books)
+     "books.id IN (?)", @books).select("customer_id").distinct).select(
+     "books.*, order_books.copies, sum(order_books.copies) as sold").where.not(
+     "books.id IN (?)", @books).group("books.id").order("sum(order_books.copies) DESC")
 
      redirect_to order_path(@order)
    end
