@@ -54,6 +54,21 @@ module SessionsHelper
       puts "Cart: ", session[:cart]
     end
 
+    def subtract_qty(book_id)
+      if session[:cart][book_id] > 0
+        session[:cart][book_id]-=1
+      end
+    end
+
+    def add_qty(book_id)
+      @book = Book.find_by(id: book_id)
+      if session[:cart][book_id] < @book.copies
+        session[:cart][book_id]+=1
+      end
+    end
+
+
+
     def populate_cart
       cart = Array.new()
       if session[:cart] != nil

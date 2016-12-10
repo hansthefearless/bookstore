@@ -10,6 +10,17 @@ class BooksController < ApplicationController
      @cart = populate_cart
    end
 
+   def subtract_from_qty
+     book_id = params[:book]
+     subtract_qty(book_id)
+     redirect_to cart_path
+   end
+
+   def add_to_qty
+     book_id = params[:book]
+     add_qty(book_id)
+     redirect_to cart_path
+   end
 
    def index
      @books = Book.all

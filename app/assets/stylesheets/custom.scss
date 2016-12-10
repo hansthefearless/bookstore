@@ -101,6 +101,10 @@ input {
   display: block;
 }
 
+.submit-button{
+  width: 30%
+}
+
 label {
   margin-right: 10px;
 }
@@ -140,10 +144,20 @@ label {
   border-style: solid;
   margin-bottom: 15px;
   margin-right: 20px;
+  height: 175px;
+  width: 125px;
 }
 
 
 /* search div */
 .search-div {
   margin-bottom: 15px;
+}
+
+/* cart */
+.book-qty {
+  margin-top: 10px;
+}
+.button-qty{
+  float: left;
 }
