@@ -44,10 +44,11 @@
         <% order_info.push([book[0].id, book[1]]) %>
       <% end %>
       <%= form_tag(orders_path, :method => 'post') do %>
-        <%= hidden_field_tag(:cart, order_info) %>
+        <% order_info.each do |order| %>
+          <%= hidden_field_tag(:cart, :multiple => true, :value => order) %>
+        <% end %>
         <%= button_tag("Submit your Order", class:"btn btn-primary") %>
       <% end %>
-      <%= order_info %>
     <% else %>
     <p style="text-align: center;">
       Your cart is empty.
