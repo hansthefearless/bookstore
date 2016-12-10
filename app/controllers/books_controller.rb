@@ -31,8 +31,6 @@ class BooksController < ApplicationController
 
    def delete_from_cart
      delete(params[:book])
-     puts "hello"
-     puts params[:book]
      flash[:success] = "Book deleted from cart"
      redirect_to cart_path
    end

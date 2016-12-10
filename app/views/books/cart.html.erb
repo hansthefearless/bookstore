@@ -35,15 +35,14 @@
             <li class="delete-link">
               <%= link_to "Delete from cart", {:controller => "books", :action => "delete_from_cart", :book => book[0].id}, {:method => 'post', :data => { confirm: "Are you sure?"}} %>
             </li>
-
           </div>
         </div>
       <% end %>
   </div>
-    <%= form_tag(orders_path, :method => 'post') do %>
-      <%= hidden_field_tag(:cart, @cart) %>
-      <%= button_tag("Submit your Order", class:"btn btn-primary") %>
-    <% end %>
+      <%= form_tag(orders_path, :method => 'post') do %>
+        <%= hidden_field_tag(:cart, @cart) %>
+        <%= button_tag("Submit your Order", class:"btn btn-primary") %>
+      <% end %>
     <% else %>
     <p style="text-align: center;">
       Your cart is empty.

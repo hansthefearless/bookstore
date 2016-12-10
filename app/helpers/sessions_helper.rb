@@ -74,14 +74,18 @@ module SessionsHelper
 
     def populate_cart
       cart = Array.new()
-      if session[:cart] != nil
+      if !session[:cart].empty?
         session[:cart].each do |book|
           @book = Book.left_outer_joins(opinions: :ratings).select(
           "books.*, avg(ratings.usefulness) as avg_rating").where(
           id: book[0])[0]
           cart.push([@book, session[:cart][book[0]]])
         end
+        puts cart
         return cart
+      else
+        puts "empty"
+        return nil
       end
     end
 
