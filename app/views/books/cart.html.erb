@@ -39,10 +39,15 @@
         </div>
       <% end %>
   </div>
+      <% order_info = Array.new() %>
+      <% @cart.each do |book| %>
+        <% order_info.push([book[0].id, book[1]]) %>
+      <% end %>
       <%= form_tag(orders_path, :method => 'post') do %>
-        <%= hidden_field_tag(:cart, @cart) %>
+        <%= hidden_field_tag(:cart, order_info) %>
         <%= button_tag("Submit your Order", class:"btn btn-primary") %>
       <% end %>
+      <%= order_info %>
     <% else %>
     <p style="text-align: center;">
       Your cart is empty.

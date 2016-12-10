@@ -3,6 +3,7 @@ module SessionsHelper
     #Logs in the given user.
     def log_in(customer)
       session[:customer_id] = customer.id
+      session[:cart] = Hash.new()
     end
 
     def current_customer?(customer)
@@ -73,6 +74,9 @@ module SessionsHelper
 
 
     def populate_cart
+      if session[:cart] == nil
+        session[:cart] = {}
+      end
       cart = Array.new()
       if !session[:cart].empty?
         session[:cart].each do |book|
