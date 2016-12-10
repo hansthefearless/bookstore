@@ -6,6 +6,7 @@
   <li>Subject: <%= book.subject %></li>
   <li>Year: <%= book.year %></li>
   <li>Average rating for feedback: <%= book.avg_rating %></li>
+  <li>Price: $<%= book.price %>.00</li>
   <li><%= link_to "More Information", book_path(book) %></li>
   <li>
     <%= form_tag(add_to_cart_path, :method => 'post', :remote => true) do %>

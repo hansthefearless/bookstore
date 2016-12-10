@@ -7,14 +7,32 @@
     <% if @cart!= nil %>
       <% @cart.each do |book| %>
         <div class="row each-book">
-          <img class="thumbnails" src="<%= book[0].thumbnail%>" alt="thumbnail" align="left" />
-          <li>Title: <%= book[0].title %></li>
-          <li>Authors: <%= book[0].authors %></li>
-          <li>Publisher: <%= book[0].publisher %></li>
-          <li>Subject: <%= book[0].subject %></li>
-          <li>Year: <%= book[0].year %></li>
-          <li>Average rating for feedback: <%= book[0].avg_rating %></li>
-          <li>Copies ordered: <%= book[1] %></li>
+          <div>
+            <img class="thumbnails" src="<%= book[0].thumbnail%>" alt="thumbnail" align="left" />
+            <li>Title: <%= book[0].title %></li>
+            <li>Authors: <%= book[0].authors %></li>
+            <li>Publisher: <%= book[0].publisher %></li>
+            <li>Subject: <%= book[0].subject %></li>
+            <li>Year: <%= book[0].year %></li>
+            <li>Average rating for feedback: <%= book[0].avg_rating %></li>
+            <li>Price: $<%= book[0].price %>.00</li>
+            <li>Quantity in stock: <%= book[0].copies %></li>
+            <li class="book-qty"> Quantity: <%= book[1] %></li>
+            <li>
+              <div class="button-qty">
+                <%= form_tag(subtract_from_qty_path, :method => 'post', :remote => true) do %>
+                  <%= hidden_field_tag(:book, book[0].id) %>
+                  <%= button_tag("", class:"btn btn-danger btn-number glyphicon glyphicon-minus") %>
+                <% end %>
+              </div>
+              <div class="button-qty">
+                <%= form_tag(add_to_qty_path, :method => 'post', :remote => true) do %>
+                  <%= hidden_field_tag(:book, book[0].id) %>
+                  <%= button_tag("", class:"btn btn-success btn-number glyphicon glyphicon-plus") %>
+                <% end %>
+              </div>
+            </li>
+          </div>
         </div>
       <% end %>
     <% else %>

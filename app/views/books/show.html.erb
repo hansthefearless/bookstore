@@ -3,16 +3,17 @@
   <h1>Book Information</h1>
 </div>
 <div class="row">
-  <h2>Order History</h2>
-  <ul class="list">
-    <%#= render @orders %>
-  </ul>
-  <h2>Opinion History</h2>
-  <ul class="list">
-    <%#= render @opinions %>
-  </ul>
-  <h2>Rating History</h2>
-  <ul class="list">
-    <%#= render @ratings %>
+  <ul class="list-book show-book">
+    <img class="thumbnails" src="<%= @book.thumbnail%>" alt="thumbnail" align="center"/>
+    <li>Title: <%= @book.title %> </li>
+    <li>ISBN: <%= @book.ISBN %> </li>
+    <li>Authors: <%= @book.authors %> </li>
+    <li>Publisher: <%= @book.publisher %> </li>
+    <li>Year: <%= @book.year %> </li>
+    <li>Subject: <%= @book.subject %> </li>
+    <li>Keywords: <%= @book.keywords %> </li>
+    <li>Format: <%= @book.format %> </li>
+    <li>Price: $<%= @book.price %>.00 </li>
+    <li>Quantity In Stock: <%= @book.copies %> </li>
   </ul>
 </div>
