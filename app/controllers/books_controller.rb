@@ -62,7 +62,7 @@ class BooksController < ApplicationController
    end
 
    def find
-      @books ||= find_books
+      @books ||= find_books 
    end
 
    private
