@@ -8,7 +8,9 @@ class OrdersController < ApplicationController
    end
 
    def show
-     @order = Order.find(params[:id])
+     Order.joins("INNER JOIN order_books ON order_books.order_id = orders.id").joins(
+     "INNER JOIN books ON books.id = order_books.book_id").select("books.*").where(
+     "orders.id = ?", params[:id])
    end
 
    def edit
@@ -24,6 +26,19 @@ class OrdersController < ApplicationController
        @order_books = OrderBook.new(order_book_params)
 
        @order_books.save
+
+     @books = []
+     params['books'].each do |book|
+       @books << book[:id]
+
+     @recommended = Order.joins("INNER JOIN order_books ON order_books.order_id = orders.id").joins(
+     "INNER JOIN books ON books.id = order_books.book_id").where(
+     id: Order.joins("INNER JOIN order_books ON order_books.order_id = orders.id").joins(
+     "INNER JOIN books ON books.id = order_books.book_id").where(
+     "customer_id != ?", order_params[:customer_id]).where(
+     "books.id IN ?", @books).select("order_id").distinct).select("books.*").where.not(
+     "books.id IN ?", @books)
+
      redirect_to order_path(@order)
    end
 
