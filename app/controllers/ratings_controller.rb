@@ -3,8 +3,9 @@ class RatingsController < ApplicationController
      @book = Book.find(params[:book_id])
      @opinion = Opinion.find(params[:opinion_id])
 
-     if @opinion.customer_id == rating_params[:customer_id]:
+     if @opinion.customer_id == session[:customer_id]:
        redirect_to book_path(@book)
+     end
 
      @rating = @opinion.ratings.create(rating_params)
 
