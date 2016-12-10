@@ -1,22 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require 'json'
 
-
+#
 # Admin
-
+#
 Admin.destroy_all
 Admin.create("login": "admin", "password": "admin", "name": "Admin")
 print "\rSeeded 1 admin\n"
 
 
+#
 # Customers
+#
+numCustomers = 30
 
 Customer.destroy_all
 Customer.create("login": "hans", "password": "hans", "name": "Sng Han Jie", "phone": "81234567", "address": "8 Somapah Road", "CCN": "2222111133334444")
@@ -24,10 +19,24 @@ Customer.create("login": "jang", "password": "jang", "name": "Joel Ang", "phone"
 Customer.create("login": "candy", "password": "candy", "name": "Lou Yu Xin", "phone": "83456789", "address": "8 Somapah Road", "CCN": "2222111133334444")
 Customer.create("login": "chay", "password": "chay", "name": "Chay Choong", "phone": "84567890", "address": "8 Somapah Road", "CCN": "2222111133334444")
 customers = ["hans", "jang", "candy", "chay"]
-print "\rSeeded 4 customers\n"
 
+for i in 1..numCustomers-4
+	fullname = Faker::Name.name
+	user = Faker::Internet.user_name(fullname, %w(. _ -))
+	if !customers.include? user
+		Customer.create("login": user, "password": user, "name": fullname, "phone": rand(80000000..89999999), "address": Faker::Address.street_address, "CCN": rand(1000000000000000..9999999999999999))
+		customers.push(user)
+	end
+end
+
+numCustomers = customers.size
+
+print "\rSeeded #{numCustomers} customers\n"
+
+
+#
 # Books, Opinions and Ratings
-
+#
 Book.destroy_all
 Opinion.destroy_all
 Rating.destroy_all
@@ -54,11 +63,10 @@ data_hash.each do |k, v|
 	Book.create("ISBN": isbn, "title": title, "authors": authors, "thumbnail": thumbnail, "copies": copies, "subject": subject, "year": year, "price": price, "publisher": publisher, "keywords": keywords, "format": form)
 	
 	begin
-		randomCust = rand(0..3)
-		custList = ["hans", "jang", "candy", "chay"].shuffle
+		custList = customers.shuffle
 
 		for i in 0..rand(0..3)
-			Opinion.create("customer": Customer.find_by("login": custList[i]), "book": Book.find(counter+1), "score": rand(0..10), "text": "this book is gr8 i r8 8/8")
+			Opinion.create("customer": Customer.find_by("login": custList[i]), "book": Book.find(counter+1), "score": rand(0..10), "text": Faker::Lorem.paragraph)
 			opinioncounter += 1
 
 			for j in 0..rand(0..3)
@@ -79,12 +87,14 @@ end
 
 print "\n"
 
-# Orders
 
+#
+# Orders
+#
 Order.destroy_all
 
-for i in 1..20
-	Order.create("customer": Customer.find_by("login": customers[rand(0..3)]), "status": "Pending")
+for i in 1..numCustomers
+	Order.create("customer": Customer.find_by("login": customers[rand(0...numCustomers)]), "status": rand(1..2) == 1 ? "Pending" : "Completed")
 	for j in 1..5
 		OrderBook.create("order": Order.find(i), "book": Book.find(rand(1..615)), "copies": rand(1..5))
 		print "\rSeeded #{i} orders"
