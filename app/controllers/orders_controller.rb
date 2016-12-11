@@ -36,25 +36,26 @@ class OrdersController < ApplicationController
    end
 
    def create
-     @order = Order.create("customer": Customer.find(session[:customer_id]), "status": "Pending")
+     ActiveRecord::Base.transaction do
+       @order = Order.create("customer": Customer.find(session[:customer_id]), "status": "Pending")
 
-     @order.save
+       @order.save
 
-     params[:cart].each do |book|
-       storebook = Book.find(book)
-       copies_left = (storebook.copies-params[:cart][book].to_f)
-       if copies_left < 0
-         redirect_to 'cart' and return
+       params[:cart].each do |book|
+         storebook = Book.find(book)
+         copies_left = (storebook.copies-params[:cart][book].to_f)
+         if copies_left < 0
+           redirect_to 'cart' and return
+         end
+         storebook.update(copies: copies_left)
+         @order_books = OrderBook.create("order": Order.find(@order[:id]), "book": Book.find(book), "copies": params[:cart][book])
+
+         @order_books.save
        end
-       storebook.update(copies: copies_left)
-       @order_books = OrderBook.create("order": Order.find(@order[:id]), "book": Book.find(book), "copies": params[:cart][book])
 
-       @order_books.save
+       session[:cart] = nil
+       redirect_to order_path(@order)
      end
-
-     session[:cart] = nil
-     redirect_to order_path(@order)
-
    end
 
    def update
