@@ -9,7 +9,7 @@ class AdminsController < ApplicationController
    def destroy
      log_out_admin
      redirect_to root_url
-  end
+   end
 
    def create
      admin = Admin.find_by(login: params[:admin][:login], password: params[:admin][:password])
@@ -20,6 +20,13 @@ class AdminsController < ApplicationController
        flash.now[:danger] = 'Invalid login/password combination'
        render 'login'
      end
+   end
+
+   def new
+   end
+
+   def inventory
+     @book = Book.new
    end
 
 end

@@ -1,21 +1,44 @@
-<%= form_tag({controller: "books", action: "find"}, method: "get") do %>
-  <div class="labels">
-    <%= label_tag(:title, "Title") %>
-    <%= text_field_tag(:title)  %>
+<%= form_for(@book) do |f| %>
 
-    <%= label_tag(:authors, "Authors") %>
-    <%= text_field_tag(:authors) %>
+  <%= render 'shared/book_error_messages', object: @book %>
 
-    <%= label_tag(:publisher, "Publisher") %>
-    <%= text_field_tag(:publisher) %>
+  <%= f.label :ISBN, "ISBN" %>
+  <%= f.text_field :ISBN, class: 'form-control' %>
 
-    <%= label_tag(:subject, "Subject") %>
-    <%= text_field_tag(:subject) %>
-  </div>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
 
-  <%= label_tag(:sort, "Sort by", class: 'sort-label') %>
-  <%= select_tag(:sort, options_for_select([["None","none"], ["Year", "year"], ["Average Ratings of Feedback", "rating"]],2)) %>
+  <%= f.label :authors %>
+  <%= f.text_field :authors, class: 'form-control' %>
 
-  <%= submit_tag(yield(:button_text), class: "btn btn-primary search-button") %>
+  <%= f.label :publisher %>
+  <%= f.text_field :publisher, class: 'form-control' %>
+
+  <%= f.label :subject %>
+  <%= f.text_field :subject, class: 'form-control' %>
+
+  <%= f.label :year %>
+  <%= f.number_field :year, class: 'form-control' %>
+
+  <%= f.label :keywords %>
+  <%= f.text_field :keywords, class: 'form-control' %>
+
+  <%= f.label :subject %>
+  <%= f.text_field :subject, class: 'form-control' %>
+
+  <%= f.label :format %>
+  <%= f.text_field :format, class: 'form-control' %>
+
+  <%= f.label :thumbnail %>
+  <%= f.url_field :thumbnail, class: 'form-control' %>
+
+  <%= f.label :copies %>
+  <%= f.number_field :copies, class: 'form-control' %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price, class: 'form-control' %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary submit-button" %>
+  <%= link_to "Back", back_path, :method => 'post' %>
 
 <% end %>

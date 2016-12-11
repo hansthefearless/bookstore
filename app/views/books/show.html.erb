@@ -46,9 +46,11 @@
   </tr>
 </table>
 <div class="row">
-  <%= form_tag(add_to_cart_path, :method => 'post', :remote => true) do %>
-    <%= hidden_field_tag(:book, @book.id) %>
-    <%= button_tag("Add to Cart") %>
+  <% if logged_in? %>
+    <%= form_tag(add_to_cart_path, :method => 'post', :remote => true) do %>
+      <%= hidden_field_tag(:book, @book.id) %>
+      <%= button_tag("Add to Cart") %>
+    <% end %>
   <% end %>
   <%= link_to "Back", back_path, :method => 'post' %>
 </div>

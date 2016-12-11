@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   post 'back', to: 'books#back'
   post 'delete_from_cart', to: 'books#delete_from_cart'
   get '/login/admin', to: 'admins#login'
+  get 'inventory', to: 'admins#inventory'
   root 'welcome#index'
 end
