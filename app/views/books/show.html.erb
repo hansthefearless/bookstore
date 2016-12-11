@@ -22,7 +22,9 @@
 </div>
 <% if @opinions.any? %>
   <div class="row">
-    <%= render @opinions %>
+    <ul class="list">
+      <%= render @opinions %>
+    </ul>
 <% else %>
     <p style="text-align: center;">
       Sorry! There are no opinions for the book. :(
