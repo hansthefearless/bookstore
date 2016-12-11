@@ -53,6 +53,8 @@ class BooksController < ApplicationController
      book_id: params[:id]).select(
      "opinions.*, ratings.usefulness, avg(ratings.usefulness) as avg_rating").order(
      "avg(ratings.usefulness) DESC").limit(params[:limit])
+     @opinion = Opinion.new
+     @rating = Rating.new
    end
 
    def edit

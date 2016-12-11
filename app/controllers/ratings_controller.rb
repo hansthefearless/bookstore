@@ -1,11 +1,12 @@
 class RatingsController < ApplicationController
    def create
-     @opinion = Opinion.find(params[:opinion_id])
+     puts params
+     @opinion = Opinion.find(rating_params[:opinion_id])
      @book = Book.find(@opinion[:book_id])
 
      if @opinion[:customer_id] == session[:customer_id]
        flash[:danger] = "You cannot rate your own opinion!"
-       redirect_to book_path(@book)
+       redirect_to book_path(@book) and return
      end
 
      @rating = Rating.new(rating_params)
