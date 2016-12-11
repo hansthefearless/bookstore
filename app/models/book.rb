@@ -4,5 +4,6 @@ class Book < ApplicationRecord
    has_many :orders, through: :order_books
    validates :title, :authors, :publisher, :subject, :keywords, :ISBN, :copies, :year, :price, :format, presence: true
    validates :copies, :year, numericality: { only_integer: true }
-   validates :price, numericality: { only_integer: false }
+   validates :price, numericality: { only_integer: true }
+   validates :copies, :price, numericality: { greater_than: -1 }
 end

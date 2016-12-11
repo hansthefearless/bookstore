@@ -1,5 +1,9 @@
-<% provide(:title), "Order Information" %>
+<% provide(:title, "Order Information") %>
 <div class="page-header">
   <h1>Order Information</h1>
-  
+  <%= @order %>
+  <% @books.each do |book| %>
+    <%= book[:title] %>
+  <% end %>
+
 </div>

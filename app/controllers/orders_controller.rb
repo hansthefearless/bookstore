@@ -8,9 +8,10 @@ class OrdersController < ApplicationController
    end
 
    def show
-     @order = Order.joins("INNER JOIN order_books ON order_books.order_id = orders.id").joins(
-     "INNER JOIN books ON books.id = order_books.book_id").where(
+     @books = Book.joins("INNER JOIN order_books ON order_books.book_id = books.id").joins(
+     "INNER JOIN orders ON orders.id = order_books.order_id").where(
      "orders.id = ?", params[:id])
+     @order = Order.find(params[:id])
    end
 
    def edit
@@ -48,6 +49,7 @@ class OrdersController < ApplicationController
 
      session[:cart] = nil
      redirect_to order_path(@order)
+
    end
 
    def update
