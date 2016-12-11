@@ -41,9 +41,13 @@ class OrdersController < ApplicationController
      @order.save
 
      params[:cart].each do |book|
-       @order_books = OrderBook.create("order": Order.find(@order[:id]), "book": Book.find(book), "copies": params[:cart][book])
        storebook = Book.find(book)
-       storebook.update(copies: (storebook.copies-params[:cart][book].to_f))
+       copies_left = (storebook.copies-params[:cart][book].to_f)
+       if copies_left < 0
+         redirect_to 'cart' and return
+       end
+       storebook.update(copies: copies_left)
+       @order_books = OrderBook.create("order": Order.find(@order[:id]), "book": Book.find(book), "copies": params[:cart][book])
 
        @order_books.save
      end
