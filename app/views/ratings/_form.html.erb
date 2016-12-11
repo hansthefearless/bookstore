@@ -1,6 +1,6 @@
 <%= form_for(@rating) do |f| %>
-  <%= f.hidden_field :customer_id, value: current_customer %>
-  <%= f.hidden_field :opinion_id, value: @opinion.id %>
+  <%= f.hidden_field :customer_id, value: customer_id %>
+  <%= f.hidden_field :opinion_id, value: opinion %>
   <%= f.label :usefulness %>
   <%= f.select :usefulness, options_for_select([["0 - Useless","0"], ["1 - Useful", "1"], ["2 - Very Useful", "2"]],2), class: "label-rating" %>
   <%= f.submit "Rate Opinion", class: "btn btn-primary rating-button" %>

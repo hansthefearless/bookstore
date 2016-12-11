@@ -18,6 +18,10 @@ module SessionsHelper
       @current_customer ||= Customer.find_by(id: session[:customer_id])
     end
 
+    def customer_id
+      current_customer.id
+    end
+
     def current_admin
       @current_admin ||= Admin.find_by(id: session[:admin_id])
     end
