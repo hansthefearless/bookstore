@@ -1,7 +1,10 @@
 class OpinionsController < ApplicationController
    def create
-     @book = Book.find(params[:id])
-     @opinion = @book.opinions.create(opinion_params)
+     @book = Book.find(opinion_params[:book_id])
+     if opinion_params[:customer_id] != session[:customer_id]
+       redirect_to book_path(@book)
+     end
+     @opinion = Opinion.create(opinion_params)
 
      redirect_to book_path(@book)
    end
