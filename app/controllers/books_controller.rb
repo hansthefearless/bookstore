@@ -45,6 +45,7 @@ class BooksController < ApplicationController
 
    def show
      @book = Book.find(params[:id])
+     @opinions = Opinion.joins(:ratings).where(book_id: params[:id]).select("opinions.*, avg(ratings.usefulness) as avg_rating")
    end
 
    def edit

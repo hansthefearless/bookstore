@@ -5,6 +5,10 @@ class CustomersController < ApplicationController
 
    def show
      @customer = Customer.find(params[:id])
+     @orders = Order.where(customer_id: params[:id])
+     @opinions = Opinion.joins(:ratings).where(customer_id: params[:id]).select(
+     "opinions.*, avg(ratings.usefulness) as avg_rating")
+     @ratings = Rating.where(customer_id: params[:id])
    end
 
    def edit
