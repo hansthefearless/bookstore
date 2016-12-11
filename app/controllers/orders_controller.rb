@@ -8,8 +8,8 @@ class OrdersController < ApplicationController
    end
 
    def show
-     Order.joins("INNER JOIN order_books ON order_books.order_id = orders.id").joins(
-     "INNER JOIN books ON books.id = order_books.book_id").select("books.*").where(
+     @order = Order.joins("INNER JOIN order_books ON order_books.order_id = orders.id").joins(
+     "INNER JOIN books ON books.id = order_books.book_id").where(
      "orders.id = ?", params[:id])
    end
 
