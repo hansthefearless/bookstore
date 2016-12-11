@@ -1,0 +1,43 @@
+<img class="image" src="<%= @book.thumbnail%>" alt="thumbnail"/>
+<table>
+  <tr>
+    <td>Title:</td>
+    <td><%= @book.title %></td>
+  </tr>
+  <tr>
+    <td>ISBN: </td>
+    <td><%= @book.ISBN %></td>
+  </tr>
+  <tr>
+    <td>Authors:</td>
+    <td><%= @book.authors %></td>
+  </tr>
+  <tr>
+    <td>Publisher:</td>
+    <td><%= @book.publisher %></td>
+  </tr>
+  <tr>
+    <td>Year: </td>
+    <td><%= @book.year %></td>
+  </tr>
+  <tr>
+    <td>Subject: </td>
+    <td><%= @book.subject %></td>
+  </tr>
+  <tr>
+    <td>Keywords:</td>
+    <td><%= @book.keywords %></td>
+  </tr>
+  <tr>
+    <td>Format:</td>
+    <td><%= @book.format %></td>
+  </tr>
+  <tr>
+    <td>Price: </td>
+    <td>$<%= @book.price %>.00</td>
+  </tr>
+  <tr>
+    <td>Quantity In Stock:</td>
+    <td><%= @book.copies %></td>
+  </tr>
+</table>

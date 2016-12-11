@@ -1,0 +1,10 @@
+<%= form_for(@opinion) do |f| %>
+  <%= render 'shared/error_messages', object: @opinion %>
+  <%= f.hidden_field :book_id, value: @book.id %>
+  <%= f.hidden_field :customer_id, value: current_customer %>
+  <%= f.label :score %>
+  <%= f.number_field :score, class: 'form-control score' %>
+  <%= f.label :text %>
+  <%= f.text_field :text, class: 'form-control' %>
+  <%= f.submit yield(:button_text), class: "btn btn-primary submit-button opinion-button" %>
+<% end %>
