@@ -2,7 +2,12 @@
 <div class="page-header">
   <h1>Order Information</h1>
   <%= @order %>
+
   <% @books.each do |book| %>
+    <%= book[:title] %>
+  <% end %>
+
+  <% @recommended.each do |book| %>
     <%= book[:title] %>
   <% end %>
 
