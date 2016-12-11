@@ -1,3 +1,14 @@
-<li>User: <%= opinion_owner(opinion.customer_id) %></li>
-<li>Score: <%= opinion.score %></li>
-<li>Opinion: <%= opinion.text %></li>
+<table class="opinion-table">
+  <tr>
+    <td>User</td>
+    <td><%= opinion_owner(opinion.customer_id) %></td>
+  </tr>
+  <tr>
+    <td>Score: </td>
+    <td><%= opinion.score %></td>
+  </tr>
+  <tr>
+    <td>Opinion: </td>
+    <td><%= opinion.text %></td>
+  </tr>
+</table>

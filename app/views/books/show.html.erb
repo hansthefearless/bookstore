@@ -22,17 +22,13 @@
 </div>
 <% if @opinions.any? %>
   <div class="row">
-    <ul class="list-book">
-      <% @opinions.each do |a| %>
-        <%= a.text %>
-      <% end %>
-      <%= render @opinions %>
+    <%= render @opinions %>
+    <%= render 'ratings/form' %>
 <% else %>
-        <p style="text-align: center;">
-          Sorry! There are no opinions for the book. :(
-        </p>
+    <p style="text-align: center;">
+      Sorry! There are no opinions for the book. :(
+    </p>
 <% end %>
-    </ul>
 </div>
 
 <div class="row">

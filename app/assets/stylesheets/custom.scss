@@ -174,11 +174,21 @@ label {
 }
 
 table{
+  table-layout: auto;
+}
+.opinion-table{
+  width: 100%;
+  td {
+    font-size: 15px;
+  }
+}
+.book-all{
   width: 40%;
+  td{
+    font-size: 20px;
+  }
 }
-td{
-  font-size: 20px;
-}
+
 .image {
   margin-bottom: 20px;
 }
@@ -199,5 +209,14 @@ td{
 
 .opinion-button {
   width: 40%;
+}
 
+.label-opinion{
+  display:block;
+}
+
+/* rating */
+.rating-button {
+  display: block;
+  width: 10%;
 }
