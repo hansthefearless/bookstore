@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
        @order.save
 
        params[:cart].each do |book|
-         storebook = Book.find(book)
+         storebook = Book.lock.find(book)
          copies_left = (storebook.copies-params[:cart][book].to_f)
          if copies_left < 0
            redirect_to 'cart' and return
