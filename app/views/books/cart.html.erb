@@ -44,7 +44,11 @@
         <% cart.push([book[0].id, book[1]]) %>
       <% end %>
       <%= form_tag(orders_path, :method => 'post') do %>
-        <%= hidden_field_tag(:cart, value: cart) %>
+        <%= fields_for (:cart) do |c| %>
+          <% @cart.each do |book| %>
+            <%= c.hidden_field(book[0].id, value: book[1]) %>
+          <% end %>
+        <% end %>
         <%= button_tag("Submit your Order", class:"btn btn-primary") %>
       <% end %>
     <% else %>

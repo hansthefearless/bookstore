@@ -59,7 +59,7 @@ module SessionsHelper
     end
 
     def subtract_qty(book_id)
-      if session[:cart][book_id] > 0
+      if session[:cart][book_id] > 1
         session[:cart][book_id]-=1
       end
     end
