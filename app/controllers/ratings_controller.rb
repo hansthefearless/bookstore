@@ -1,6 +1,5 @@
 class RatingsController < ApplicationController
    def create
-     puts params
      @opinion = Opinion.find(rating_params[:opinion_id])
      @book = Book.find(@opinion[:book_id])
 
@@ -9,7 +8,7 @@ class RatingsController < ApplicationController
        redirect_to book_path(@book) and return
      end
 
-     @rating = Rating.new(rating_params)
+     @rating = Rating.create("customer": Customer.find(rating_params[:customer_id]), "opinion": Opinion.find(rating_params[:opinion_id]), "usefulness": rating_params[:usefulness])
 
      redirect_to book_path(@book)
    end

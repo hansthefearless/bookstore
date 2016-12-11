@@ -49,9 +49,10 @@ class BooksController < ApplicationController
        params[:limit] = 5
      end
      @book = Book.find(params[:id])
-     @opinions = Opinion.joins(:ratings).where(
+     @opinions = Opinion.left_outer_joins(:ratings).where(
      book_id: params[:id]).select(
-     "opinions.*, ratings.usefulness, avg(ratings.usefulness) as avg_rating").order(
+     "opinions.*, ratings.usefulness, avg(ratings.usefulness) as avg_rating").group(
+     "opinions.id").order(
      "avg(ratings.usefulness) DESC").limit(params[:limit])
      @opinion = Opinion.new
      @rating = Rating.new
