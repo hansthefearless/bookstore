@@ -1,1 +1,17 @@
+<% provide(:title, "Inventory") %>
+<div class="page-header">
+  <h1> B&N Inventory </h1>
+  <%= button_to "Add Book", new_book_path, method: :get %>
 
+</div>
+<div class="row">
+  <ul class="list-book">
+    <% if @books.any? %>
+      <%= render @books %>
+    <% else %>
+      <p style="text-align: center;">
+        Sorry! There are no books in the inventory. :(
+      </p>
+    <% end %>
+  </ul>
+</div>

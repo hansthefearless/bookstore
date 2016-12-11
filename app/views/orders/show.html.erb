@@ -1,14 +1,28 @@
 <% provide(:title, "Order Information") %>
 <div class="page-header">
   <h1>Order Information</h1>
-  <%= @order %>
+</div>
+<div class="container">
+  <div class="row">
+    <h3>Order ID: <%= @order.id %></h2>
+    <ul class="list-book">
+      <% @books.each do |book| %>
+      <div class="row each-book">
+        <li>Title: <%= book[:title] %></li>
+        <li><%= link_to "More Information", book_path(book[:id]) %></li>
+      </div>
+      <% end %>
+    </ul>
+  </div>
 
-  <% @books.each do |book| %>
-    <%= book[:title] %>
+
+
+</div>
+<div class="page-header">
+  <h1>Recommended for you</h1>
+</div>
+<div class="row">
+  <% @recommended.each do |r| %>
+    <%= r[:title] %>
   <% end %>
-
-  <% @recommended.each do |book| %>
-    <%= book[:title] %>
-  <% end %>
-
 </div>

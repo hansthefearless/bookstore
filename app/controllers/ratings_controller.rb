@@ -3,7 +3,8 @@ class RatingsController < ApplicationController
      @opinion = Opinion.find(params[:opinion_id])
      @book = Book.find(@opinion[:book_id])
 
-     if @opinion[:customer_id] == session[:customer_id]:
+     if @opinion[:customer_id] == session[:customer_id]
+       flash[:danger] = "You cannot rate your own opinion!"
        redirect_to book_path(@book)
      end
 

@@ -6,12 +6,20 @@ module SessionsHelper
       session[:cart] = Hash.new()
     end
 
-    def current_customer?(customer)
-      customer == current_customer
+    def log_in_admin(admin)
+      session[:admin_id] = admin.id
     end
+
+    # def current_customer?(customer)
+    #   customer == current_customer
+    # end
     # Returns the current logged-in user (if any)
     def current_customer
       @current_customer ||= Customer.find_by(id: session[:customer_id])
+    end
+
+    def current_admin
+      @current_admin ||= Admin.find_by(id: session[:admin_id])
     end
 
     # Returns true if the user is logged in, false otherwise
@@ -19,10 +27,20 @@ module SessionsHelper
       !current_customer.nil?
     end
 
+    def logged_in_admin?
+      !current_admin.nil?
+    end
+
+
     def log_out
       session.delete(:customer_id)
       session.delete(:cart)
       @current_customer = nil
+    end
+
+    def log_out_admin
+      session.delete(:admin_id)
+      @current_admin = nil
     end
 
     # redirects to stored location (or to the default).

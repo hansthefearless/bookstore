@@ -1,0 +1,19 @@
+<% provide(:title, "Admin Log in") %>
+<div class="page-header">
+  <h1>Admin Log In</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(:admin, url: admins_path) do |f| %>
+
+        <%= f.label :login %>
+        <%= f.text_field :login, class: "form-control" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
+
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

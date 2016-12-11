@@ -36,6 +36,7 @@ class BooksController < ApplicationController
    end
 
    def index
+     store_location
      @books = Book.all
    end
 

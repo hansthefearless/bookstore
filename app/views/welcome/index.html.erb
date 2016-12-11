@@ -1,6 +1,6 @@
 <div class="center jumbotron">
   <h1>Welcome to B&N Bookstore </h1>
-  <% unless logged_in? %>
+  <% if !logged_in? && !logged_in_admin? %>
     <h2>
       Please Log in or Sign up to access our book store!
     </h2>
