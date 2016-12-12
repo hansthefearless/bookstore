@@ -55,7 +55,7 @@ data_hash.each do |k, v|
 	copies = rand(1...20)
 	subject = v['subject']
 	year = v['year']
-	price = rand(2000...10000) / 100.0
+	price = rand(20...100)
 	publisher = v['publisher']
 	thumbnail = v['thumbnail']
 	keywords = v['keywords']
