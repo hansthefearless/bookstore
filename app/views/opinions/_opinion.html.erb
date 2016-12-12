@@ -1,5 +1,9 @@
 <table class="opinion-table">
   <tr>
+    <td>Date</td>
+    <td><%= opinion.created_at %></td>
+  </tr>
+  <tr>
     <td>User</td>
     <td><%= opinion_owner(opinion.customer_id) %></td>
   </tr>

@@ -15,15 +15,15 @@
       <% end %>
     </ul>
   </div>
-
-
-
 </div>
+
 <div class="page-header">
   <h1>Recommended for you</h1>
 </div>
 <div class="row">
-  <% @recommended.each do |r| %>
-    <%= r[:title] %>
-  <% end %>
+  <ul class="list-book">
+    <% @recommended.each do |r| %>
+      <%= render 'book', book: r %>
+    <% end %>
+  </ul>
 </div>

@@ -1,0 +1,19 @@
+<div class="row each-book">
+  <img class="thumbnails" src="<%= book.thumbnail%>" alt="thumbnail" align="left" />
+  <li>Title: <%= book.title %></li>
+  <li>Authors: <%= book.authors %></li>
+  <li>Publisher: <%= book.publisher %></li>
+  <li>Subject: <%= book.subject %></li>
+  <li>Year: <%= book.year %></li>
+  <li>Price: $<%= book.price %>.00</li>
+  <li>Quantity in stock: <%= book.copies %></li>
+  <% if logged_in? %>
+    <li><%= link_to "More Information", book_path(book) %></li>
+    <li>
+      <%= form_tag(add_to_cart_path, :method => 'post', :remote => true) do %>
+        <%= hidden_field_tag(:book, book.id) %>
+        <%= button_tag("Add to Cart") %>
+      <% end %>
+    </li>
+  <% end %>
+</div>
