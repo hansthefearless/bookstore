@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
      store_location
      @books = Book.joins("INNER JOIN order_books ON order_books.book_id = books.id").joins(
      "INNER JOIN orders ON orders.id = order_books.order_id").where(
-     "orders.id = ?", params[:id]).select("books.id, books.title, order_books.copies")
+     "orders.id = ?", params[:id]).select("books.id, books.thumbnail, books.title, order_books.copies")
 
      @order = Order.find(params[:id])
 
