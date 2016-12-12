@@ -15,15 +15,21 @@
       <% end %>
     </ul>
   </div>
-
-
-
 </div>
+
 <div class="page-header">
   <h1>Recommended for you</h1>
 </div>
 <div class="row">
-  <% @recommended.each do |r| %>
-    <%= r[:title] %>
+  <ul class="list-book">
+  <% if !@recommended.empty? %>
+    <% @recommended.each do |r| %>
+      <%= render 'book', book: r %>
+    <% end %>
+  <% else %>
+    <p style="text-align: center">
+      Sorry, there aren't any books to recommend! :(
+    </p>
   <% end %>
+  </ul>
 </div>

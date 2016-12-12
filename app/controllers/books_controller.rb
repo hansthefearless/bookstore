@@ -82,6 +82,12 @@ class BooksController < ApplicationController
      end
    end
 
+   def destroy
+     Book.find(params[:id]).destroy
+     flash[:success] = "Book deleted"
+     redirect_to books_path
+   end
+
    def search
    end
 

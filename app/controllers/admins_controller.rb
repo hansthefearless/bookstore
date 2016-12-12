@@ -25,8 +25,5 @@ class AdminsController < ApplicationController
    def new
    end
 
-   def inventory
-     @book = Book.new
-   end
 
 end

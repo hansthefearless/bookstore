@@ -15,7 +15,7 @@
 <div class="row">
   <ul class="list-book">
     <% if @books.any? %>
-      <%= render @books %>
+      <%= render @books, avg_rating: true%>
     <% else %>
       <p style="text-align: center;">
         Sorry! There are no books that match your search query. :(

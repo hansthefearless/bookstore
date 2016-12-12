@@ -5,9 +5,6 @@
   <li>Publisher: <%= book.publisher %></li>
   <li>Subject: <%= book.subject %></li>
   <li>Year: <%= book.year %></li>
-  <% if :avg_rating %>
-    <li>Average rating for feedback: <%= book.avg_rating %></li>
-  <% end %>
   <li>Price: $<%= book.price %>.00</li>
   <li>Quantity in stock: <%= book.copies %></li>
   <% if logged_in? %>
@@ -18,8 +15,5 @@
         <%= button_tag("Add to Cart") %>
       <% end %>
     </li>
-  <% elsif logged_in_admin? %>
-    <li><%= link_to "Edit", edit_book_path(book), method: :get %> </li>
-    <li><%= link_to "Delete", book, method: :delete, data: { confirm: "Are you sure?" } %> </li>
   <% end %>
 </div>

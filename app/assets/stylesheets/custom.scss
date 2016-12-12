@@ -177,9 +177,11 @@ table{
   table-layout: auto;
 }
 .opinion-table{
-  width: 100%;
+  width: auto;
+  margin-bottom: 10px;
   td {
     font-size: 15px;
+    padding-right: 20px;
   }
 }
 .book-all{
@@ -206,11 +208,11 @@ table{
 
 /* opinion */
 .score {
-  width: 30%;
+  width: auto;
 }
 
 .opinion-button {
-  width: 40%;
+  width: auto;
 }
 
 .label-opinion{
@@ -220,5 +222,29 @@ table{
 /* rating */
 .rating-button {
   display: block;
-  width: 10%;
+  width: auto;
+  margin-bottom: 20px;
+}
+
+#rating_usefulness{
+  width: auto;
+}
+/* no. of feedback to show */
+.rank-button {
+  display: block;
+  width: auto;
+}
+
+.rank-label{
+  display: block;
+}
+
+.rank-select{
+  width: auto;
+}
+
+.separator{
+  border-bottom: 1px solid $gray-lighter;
+  margin-bottom: 20px;
+
 }
