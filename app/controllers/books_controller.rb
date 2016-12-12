@@ -46,14 +46,16 @@ class BooksController < ApplicationController
 
    def show
      if params[:limit] == nil
-       params[:limit] = 5
+       n = 5
+     else
+       n = params[:limit]
      end
      @book = Book.find(params[:id])
      @opinions = Opinion.left_outer_joins(:ratings).where(
      book_id: params[:id]).select(
      "opinions.*, ratings.usefulness, avg(ratings.usefulness) as avg_rating").group(
      "opinions.id").order(
-     "avg(ratings.usefulness) DESC").limit(params[:limit])
+     "avg(ratings.usefulness) DESC").limit(n)
      @opinion = Opinion.new
      @rating = Rating.new
    end
