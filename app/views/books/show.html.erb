@@ -29,7 +29,7 @@
 <% if @opinions.any? %>
   <div class="row">
     <ul class="list">
-      <%= render @opinions %>
+      <%= render @opinions, require_user: true%>
     </ul>
 <% else %>
     <p style="text-align: center;">

@@ -3,10 +3,12 @@
     <td>Date</td>
     <td><%= opinion.created_at %></td>
   </tr>
-  <tr>
-    <td>User</td>
-    <td><%= opinion_owner(opinion.customer_id) %></td>
-  </tr>
+  <% if :require_user %>
+    <tr>
+      <td>User</td>
+      <td><%= opinion_owner(opinion.customer_id) %></td>
+    </tr>
+  <% end %>
   <tr>
     <td>Score: </td>
     <td><%= opinion.score %></td>
@@ -14,6 +16,15 @@
   <tr>
     <td>Opinion: </td>
     <td><%= opinion.text %></td>
+  </tr>
+  <tr>
+    <td>Average Rating of Opinion: </td>
+    <td><% if opinion.avg_rating!=nil %>
+          <%= opinion.avg_rating %>
+        <% else %>
+          -
+        <% end %>
+    </td>
   </tr>
 </table>
 <div class="separator">
