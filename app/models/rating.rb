@@ -4,5 +4,5 @@ class Rating < ApplicationRecord
   validates :usefulness, presence: true
   validates :usefulness, numericality: { only_integer: true }
   validates :opinion_id, uniqueness: { scope: :customer_id,
-  message: "Feedback already rated"}
+  message: "You have already rated this opinion!"}
 end

@@ -4,6 +4,7 @@ class CustomersController < ApplicationController
    end
 
    def show
+     store_location
      @customer = Customer.find(params[:id])
      @orders = Order.where(customer_id: params[:id])
      @opinions = Opinion.left_outer_joins(:ratings).where("opinions.customer_id = ?", params[:id]).group("opinions.id").select(
