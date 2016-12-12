@@ -66,7 +66,7 @@ data_hash.each do |k, v|
 		custList = customers.shuffle
 
 		for i in 0..rand(0..3)
-			Opinion.create("customer": Customer.find_by("login": custList[i]), "book": Book.find(counter+1), "score": rand(1..10), "text": Faker::Lorem.paragraph)
+			Opinion.create("customer": Customer.find_by("login": custList[i]), "book": Book.find(counter+1), "score": rand(0..10), "text": Faker::Lorem.paragraph)
 			opinioncounter += 1
 
 			for j in 0..rand(0..3)
