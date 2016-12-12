@@ -61,12 +61,12 @@ data_hash.each do |k, v|
 	keywords = v['keywords']
 	form = rand(1..2) == 1 ? "Hardcover" : "Softcover"
 	Book.create("ISBN": isbn, "title": title, "authors": authors, "thumbnail": thumbnail, "copies": copies, "subject": subject, "year": year, "price": price, "publisher": publisher, "keywords": keywords, "format": form)
-	
+
 	begin
 		custList = customers.shuffle
 
 		for i in 0..rand(0..3)
-			Opinion.create("customer": Customer.find_by("login": custList[i]), "book": Book.find(counter+1), "score": rand(0..10), "text": Faker::Lorem.paragraph)
+			Opinion.create("customer": Customer.find_by("login": custList[i]), "book": Book.find(counter+1), "score": rand(1..10), "text": Faker::Lorem.paragraph)
 			opinioncounter += 1
 
 			for j in 0..rand(0..3)
@@ -102,4 +102,3 @@ for i in 1..numCustomers
 end
 
 puts "\nSeeding complete"
-

@@ -48,7 +48,11 @@ class BooksController < ApplicationController
      if params[:limit] == nil
        n = 5
      else
-       n = params[:limit]
+       if params[:limit].to_f < 1
+         n = 5
+       else
+         n = params[:limit]
+       end
      end
      @book = Book.find(params[:id])
      @opinions = Opinion.left_outer_joins(:ratings).where(

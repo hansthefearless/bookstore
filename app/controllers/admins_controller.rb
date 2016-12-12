@@ -5,7 +5,11 @@ class AdminsController < ApplicationController
      if params[:limit] == nil
        m = 5
      else
-       m = params[:limit]
+       if params[:limit].to_f < 1
+         m = 5
+       else
+         m = params[:limit]
+       end
      end
 
      start_of_month = Time.now.beginning_of_month()
