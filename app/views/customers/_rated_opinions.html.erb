@@ -1,0 +1,26 @@
+<%= link_to opinion_book(rated_opinion.book_id), book_path(rated_opinion.book_id) %>
+
+<table class="opinion-table">
+  <tr>
+    <td>User: </td>
+    <td><%= opinion_owner(rated_opinion.customer_id) %></td>
+  </tr>
+
+  <tr>
+    <td>Score: </td>
+    <td><%= rated_opinion.score %></td>
+  </tr>
+  <tr>
+    <td>Opinion: </td>
+    <td><%= rated_opinion.text %></td>
+  </tr>
+  <tr>
+    <td> Your rating of Opinion: </td>
+    <td><% if rated_opinion.ratings.usefulness != nil %>
+          <%= rated_opinion.usefulness %>
+        <% else %>
+          -
+        <% end %>
+    </td>
+  </tr>
+</table>

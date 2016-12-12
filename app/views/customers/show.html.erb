@@ -35,17 +35,24 @@
 <div class="page-header">
   <h1>Opinion History</h1>
 </div>
+
+
 <div class="container">
   <div class="row">
-    <%= render @opinions, require_user: false%>
+    <% @opinions.each do |o| %>
+      <%= render 'opinion_cust', opinion: o%>
+    <% end %>
   </div>
 </div>
 
 <div class="page-header">
   <h1>Rating History</h1>
 </div>
+
 <div class="container">
   <div class="row">
-    <%#= render @ratings, require_user: false%>
+    <% @rated_opinions.each do |r| %>
+      <%= render 'rated_opinions', rated_opinion: r %>
+    <% end %>
   </div>
 </div>
