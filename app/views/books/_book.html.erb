@@ -5,6 +5,9 @@
   <li>Publisher: <%= book.publisher %></li>
   <li>Subject: <%= book.subject %></li>
   <li>Year: <%= book.year %></li>
+  <% if :avg_rating %>
+    <li>Average rating for feedback: <%= book.avg_rating %></li>
+  <% end %>
   <li>Price: $<%= book.price %>.00</li>
   <li>Quantity in stock: <%= book.copies %></li>
   <% if logged_in? %>

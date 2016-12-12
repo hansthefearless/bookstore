@@ -54,10 +54,10 @@
           <% @cart.each do |book| %>
             <% price+= (book[0].price*book[1]) %>
           <% end %>
-          <h5>Total Price: $<%= price %>.00 </h5>
-
+          <h4>Total Price: $<%= price %>.00 </h4>
+          <%= button_tag("Submit your Order", class:"btn btn-primary") %>
         </div>
-        <%= button_tag("Submit your Order", class:"btn btn-primary") %>
+
       <% end %>
     <% else %>
     <p style="text-align: center;">
