@@ -49,6 +49,14 @@
             <%= c.hidden_field(book[0].id, value: book[1]) %>
           <% end %>
         <% end %>
+        <div class="row">
+          <% price = 0 %>
+          <% @cart.each do |book| %>
+            <% price+= (book[0].price*book[1]) %>
+          <% end %>
+          <h5>Total Price: $<%= price %>.00 </h5>
+
+        </div>
         <%= button_tag("Submit your Order", class:"btn btn-primary") %>
       <% end %>
     <% else %>

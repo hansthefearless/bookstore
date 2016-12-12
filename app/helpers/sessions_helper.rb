@@ -93,8 +93,6 @@ module SessionsHelper
       end
     end
 
-
-
     def populate_cart
       if session[:cart] == nil
         session[:cart] = {}
