@@ -1,11 +1,7 @@
 <table class="opinion-table">
-  <tr>
-    <td>Date</td>
-    <td><%= opinion.created_at %></td>
-  </tr>
-  <% if :require_user %>
+  <% if require_user %>
     <tr>
-      <td>User</td>
+      <td>User: </td>
       <td><%= opinion_owner(opinion.customer_id) %></td>
     </tr>
   <% end %>
@@ -27,6 +23,8 @@
     </td>
   </tr>
 </table>
+<% if require_user %>
 <div class="separator">
   <%= render 'ratings/form', opinion: opinion.id %>
 </div>
+<% end %>

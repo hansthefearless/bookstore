@@ -1,13 +1,16 @@
 <% provide(:title, "Inventory") %>
+<% provide(:avg_rating, false) %>
 <div class="page-header">
-  <h1> B&N Inventory </h1>
+  <h1> B&'N Inventory </h1>
   <%= button_to "Add Book", new_book_path, method: :get %>
 
 </div>
 <div class="row">
   <ul class="list-book">
     <% if @books.any? %>
-      <%= render @books %>
+      <% @books.each do |book| %>
+        <%= render 'book', book: book, avg_rating: false%>
+      <% end %>
     <% else %>
       <p style="text-align: center;">
         Sorry! There are no books in the inventory. :(
