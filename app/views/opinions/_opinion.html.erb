@@ -1,3 +1,5 @@
+<%= link_to opinion_book(opinion.book_id), book_path(opinion.book_id) %>
+
 <table class="opinion-table">
   <% if require_user %>
     <tr>
@@ -23,6 +25,8 @@
     </td>
   </tr>
 </table>
+<% if !require_user %>
+<% end %>
 <% if require_user %>
 <div class="separator">
   <%= render 'ratings/form', opinion: opinion.id %>
