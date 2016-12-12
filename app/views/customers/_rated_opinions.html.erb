@@ -16,8 +16,8 @@
   </tr>
   <tr>
     <td> Your rating of Opinion: </td>
-    <td><% if rated_opinion.ratings.usefulness != nil %>
-          <%= rated_opinion.usefulness %>
+    <td><% if rated_opinion.usefulness != nil %>
+          <%= get_usefulness(rated_opinion.usefulness) %>
         <% else %>
           -
         <% end %>

@@ -25,7 +25,7 @@ class AdminsController < ApplicationController
      @publishers = Book.joins("INNER JOIN order_books ON order_books.book_id = books.id").joins(
      "INNER JOIN orders ON orders.id = order_books.order_id").where(
      "orders.created_at > ?", start_of_month).group(
-     "books.publishers").select("books.publishers, order_books.copies, sum(order_books.copies) as sold").order(
+     "books.publisher").select("books.publisher, order_books.copies, sum(order_books.copies) as sold").order(
      "sum(order_books.copies) DESC").limit(m)
    end
 

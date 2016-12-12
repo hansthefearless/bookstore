@@ -10,4 +10,9 @@ module OpinionsHelper
     @book.title
   end
 
+  def get_usefulness(usefulness)
+    lista = ["Useless", "Useful", "Very Useful"]
+    lista[usefulness]
+  end
+  
 end

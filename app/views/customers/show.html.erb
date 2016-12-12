@@ -38,9 +38,11 @@
 
 
 <div class="container">
-  <div class="row">
+  <div class="each-book">
     <% @opinions.each do |o| %>
-      <%= render 'opinion_cust', opinion: o%>
+    <ul class="separator list-book">
+        <li><%= render 'opinion_cust', opinion: o%> </li>
+    </ul>
     <% end %>
   </div>
 </div>
@@ -50,9 +52,11 @@
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="each-book">
     <% @rated_opinions.each do |r| %>
-      <%= render 'rated_opinions', rated_opinion: r %>
+      <ul class="separator list-book">
+        <li><%= render 'rated_opinions', rated_opinion: r %></li>
+      </ul>
     <% end %>
   </div>
 </div>
