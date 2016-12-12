@@ -1,4 +1,51 @@
 <% provide(:title, Admin) %>
 <div class="page-header">
-  <h2>Statistics</h2>
+  <h1>Statistics</h1>
+  <%= form_tag(admin_path, method: :get) do %>
+    <%= hidden_field_tag :book, value: :id %>
+    <%= label_tag :limit, "Number of entries to show", class: "rank-label" %>
+    <%= number_field_tag :limit, :limit, class: "rank-select" %>
+    <%= submit_tag "Submit", class: "btn btn-primary rank-button" %>
+  <% end %>
+</div>
+
+
+<div class="page-header">
+  <h3>Top Books</h3>
+</div>
+<div class="row list-book">
+  <ul class="each-book">
+    <% index = 1 %>
+    <% @books.each do |b| %>
+      <li><%= index %>. <%= b.title %></li>
+      <% index +=1 %>
+    <% end %>
+  </ul>
+</div>
+
+<div class="page-header">
+  <h3>Top Authors</h3>
+</div>
+<div class="row list-book">
+  <ul class="each-book">
+    <% index = 1 %>
+    <% @authors.each do |b| %>
+      <li><%= index %>. <%= b.authors %></li>
+      <% index +=1 %>
+    <% end %>
+  </ul>
+</div>
+
+
+<div class="page-header">
+  <h3>Top Publishers</h3>
+</div>
+<div class="row list-book">
+  <ul class="each-book">
+    <% index = 1 %>
+    <% @publishers.each do |b| %>
+      <li><%= index %>. <%= b.publisher %></li>
+      <% index +=1 %>
+    <% end %>
+  </ul>
 </div>

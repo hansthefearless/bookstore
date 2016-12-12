@@ -1,19 +1,62 @@
 <% provide(:title, "Profile") %>
 <div class="page-header">
-  <h1>Your Profile</h1>
+  <h1>Your Account Information</h1>
+</div>
+<div class="container">
+  <%= render 'customer' %>
 </div>
 
+
+<div class="page-header">
+  <h1>Order History</h1>
+</div>
 <div class="row">
-  <h2>Order History</h2>
-  <ul class="list">
-    <%#= render @orders %>
-  </ul>
-  <h2>Opinion History</h2>
-  <ul class="list">
-    <%#= render @opinions %>
-  </ul>
-  <h2>Rating History</h2>
-  <ul class="list">
-    <%#= render @ratings %>
-  </ul>
+    <ul class="list-book">
+      <% @orders.each do |order| %>
+      <h3>Order ID: <%= order.id %></h2>
+      <div class="each-book">
+        <% list = book_list(order.id) %>
+        <% list.each do |book| %>
+        <ul class="separator">
+          <div class="row">
+            <li>
+              <img class="thumbnails" src="<%= book[:thumbnail] %>" alt="thumbnail" align="left" />
+            </li>
+            <li>Title: <%= book[:title] %></li>
+            <li>Copies: <%= book[:copies] %></li>
+            <li><%= link_to "More Information", book_path(book[:id]) %></li>
+          </div>
+        </ul>
+        <%end%>
+      </div>
+      <% end %>
+    </ul>
+</div>
+<div class="page-header">
+  <h1>Opinion History</h1>
+</div>
+
+
+<div class="container">
+  <div class="each-book">
+    <% @opinions.each do |o| %>
+    <ul class="separator list-book">
+        <li><%= render 'opinion_cust', opinion: o%> </li>
+    </ul>
+    <% end %>
+  </div>
+</div>
+
+<div class="page-header">
+  <h1>Rating History</h1>
+</div>
+
+<div class="container">
+  <div class="each-book">
+    <% @rated_opinions.each do |r| %>
+      <ul class="separator list-book">
+        <li><%= render 'rated_opinions', rated_opinion: r %></li>
+      </ul>
+    <% end %>
+  </div>
 </div>

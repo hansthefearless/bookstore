@@ -22,7 +22,7 @@
   <%= form_for(@book, method: :get) do |f| %>
     <%= hidden_field_tag :book, value: :id %>
     <%= f.label :limit, "Number of feedback to show (ranked according to average rating of feedback)", class: "rank-label" %>
-    <%= select_tag :limit, options_for_select([1,2,3,4,5,6,7,8,9,10]), class:"rank-select" %>
+    <%= number_field_tag :limit, :limit, class: "rank-select" %>
     <%= f.submit "Submit", class: "btn btn-primary rank-button" %>
   <% end %>
 </div>
