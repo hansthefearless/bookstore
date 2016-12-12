@@ -83,7 +83,7 @@ p {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 20%;
+  width: auto;
   margin-bottom: 15px;
   margin-right: 10px;
   @include box_sizing;
@@ -93,16 +93,16 @@ input {
   height: auto !important;
 }
 #sort {
-  width : 20%;
+  width : auto;
 }
 
 .search-button{
-  width: 10%;
+  width: auto;
   display: block;
 }
 
 .submit-button{
-  width: 30%
+  width: auto;
 }
 
 label {
