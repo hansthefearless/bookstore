@@ -9,7 +9,11 @@ class RatingsController < ApplicationController
      end
 
      @rating = Rating.create("customer": Customer.find(rating_params[:customer_id]), "opinion": Opinion.find(rating_params[:opinion_id]), "usefulness": rating_params[:usefulness])
-
+     if !@rating.errors.full_messages.empty?
+       @rating.errors.full_messages.each do |msg|
+         flash[:danger] = msg
+       end
+     end
      redirect_to book_path(@book)
    end
 

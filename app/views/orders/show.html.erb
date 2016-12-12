@@ -8,6 +8,9 @@
     <ul class="list-book">
       <% @books.each do |book| %>
       <div class="row each-book">
+        <li>
+          <img class="thumbnails" src="<%= book[:thumbnail] %>" alt="thumbnail" align="left" />
+        </li>
         <li>Title: <%= book[:title] %></li>
         <li>Copies: <%= book[:copies] %></li>
         <li><%= link_to "More Information", book_path(book[:id]) %></li>
