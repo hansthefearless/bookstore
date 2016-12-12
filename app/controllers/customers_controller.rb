@@ -8,7 +8,7 @@ class CustomersController < ApplicationController
      @orders = Order.where(customer_id: params[:id])
      @opinions = Opinion.left_outer_joins(:ratings).where("opinions.customer_id = ?", params[:id]).group("opinions.id").select(
      "opinions.*, avg(ratings.usefulness) as avg_rating")
-     @ratings = Rating.where(customer_id: params[:id])
+     @rated_opinions = Opinion.left_outer_joins(:ratings).where("ratings.customer_id = ?", params[:id]).order("usefulness DESC")
    end
 
    def edit
