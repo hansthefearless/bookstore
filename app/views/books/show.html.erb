@@ -26,17 +26,19 @@
     <%= f.submit "Submit", class: "btn btn-primary rank-button" %>
   <% end %>
 </div>
-<% if @opinions.any? %>
-  <div class="row">
-    <ul class="list">
-      <%= render @opinions %>
-    </ul>
+<div class="row">
+  <% if @opinions.any? %>
+  <ul class="list">
+    <%= render @opinions %>
+  </ul>
 <% else %>
-    <p style="text-align: center;">
-      Sorry! There are no opinions for the book. :(
-    </p>
+  <p style="text-align: center;">
+    Sorry! There are no opinions for the book. :(
+  </p>
 <% end %>
 </div>
+
+
 
 <div class="row">
   <h3>Add your own opinion</h3>
